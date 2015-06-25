@@ -7,18 +7,17 @@ WebsiteList = require '../../component/WebsiteList/main'
 class Mod extends Skateboard.BaseMod
 	cachable: true
 
-	# events:
-	# 	'click #btn-submit': 'submit'
-	# 	'click #btn-register': 'register'
-	#
+	events:
+		'click #home-btn-pre': 'prePage'
+		'click #home-btn-next': 'nextPage'
+
+	pageSelector: null
 
 	_bodyTpl: require './body.tpl.html'
 
-
-	render: =>
-		super
+	loadWebsites: (page=1, pageSize=10)=>
 		app.ajax.get
-			url: '/api/v1/websites'
+			url: '/api/v1/websites' + '?page=' + page + 'pageSize=' + pageSize;
 			success: (res)=>
 				console.log(res)
 				React.render(
@@ -27,5 +26,25 @@ class Mod extends Skateboard.BaseMod
 				)
 			error:(err)=>
 				app.alerts.alert '网络繁忙，请稍后再试'
+
+
+	render: =>
+		super
+
+		@pageSelector = $('#home-page-index')
+		@loadWebsites(1)
+
+	prePage: =>
+		page = parseInt(@pageSelector.text())
+		if page - 1 > 0
+			@loadWebsites(page - 1)
+			@pageSelector.text(page - 1)
+
+	nextPage: =>
+		page = parseInt(@pageSelector.text())
+		@loadWebsites(page + 1)
+		@pageSelector.text(page + 1)
+
+
 
 module.exports = Mod
