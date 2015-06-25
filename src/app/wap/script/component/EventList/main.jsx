@@ -25,7 +25,7 @@ module.exports = React.createClass({
 
         return(
             <div className="conponent-EventList">
-                {this.state.events.map(createItem.bind(this))}
+                {this.props.events.map(createItem.bind(this))}
             </div>
         );
     }
