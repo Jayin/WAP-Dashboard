@@ -17,7 +17,7 @@ class Mod extends Skateboard.BaseMod
 
 	loadWebsites: (page=1, pageSize=10)=>
 		app.ajax.get
-			url: '/api/v1/websites' + '?page=' + page + 'pageSize=' + pageSize;
+			url: '/api/v1/websites' + '?page=' + page + '&pageSize=' + pageSize;
 			success: (res)=>
 				console.log(res)
 				React.render(
