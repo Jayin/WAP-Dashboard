@@ -24,7 +24,7 @@ module.exports = React.createClass({
 
         return(
             <div className="conponent-WebsiteList">
-                {this.state.websites.map(createItem.bind(this))}
+                {this.props.websites.map(createItem.bind(this))}
             </div>
         );
     }
