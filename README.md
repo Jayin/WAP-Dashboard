@@ -11,7 +11,7 @@ python -m SimpleHTTPServer
 ```
 
 
-visit http://localhost:8000/static/app/wap/index.html
+visit `http://localhost:8000/static/app/wap/index.html`
 
 License
 -------
