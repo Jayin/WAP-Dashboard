@@ -7,29 +7,41 @@ EventList = require '../../component/EventList/main'
 class Mod extends Skateboard.BaseMod
 	cachable: true
 
-	# events:
-	# 	'click #btn-submit': 'submit'
-	# 	'click #btn-register': 'register'
-	#
+	events:
+		'click #information-btn-pre': 'prePage'
+		'click #information-btn-next': 'nextPage'
 
 	_bodyTpl: require './body.tpl.html'
 
 	website: null
 
 	_afterFadeIn: =>
-		@updateState()
+		@loadEvents()
 
 
 	render: =>
 		super
-		@updateState()
+
+		@pageSelector = $('#information-page-index')
+		@loadEvents()
+
+	prePage: =>
+		page = parseInt(@pageSelector.text())
+		if page - 1 > 0
+			@loadEvents(page - 1)
+			@pageSelector.text(page - 1)
+
+	nextPage: =>
+		page = parseInt(@pageSelector.text())
+		@loadEvents(page + 1)
+		@pageSelector.text(page + 1)
 
 
-	updateState: =>
+	loadEvents: (page=1, pageSize=10)=>
 		@website = G.state.get('website')
 		console.log @website
 		app.ajax.get
-			url: '/api/v1/website/{website_id}/events'.replace('{website_id}', @website._id)
+			url: '/api/v1/website/{website_id}/events?page={page}&pageSize={pageSize}'.replace('{website_id}', @website._id).replace('{page}', page).replace('{pageSize}', pageSize)
 			success: (res)=>
 				console.log(res)
 				React.render(
