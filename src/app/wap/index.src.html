@@ -34,6 +34,10 @@ require(['jquery', 'app', 'skateboard'], function($, app, Skateboard) {
 			app.ajax.hideLoading();
 			app.alerts.alert.hide();
 			app.alerts.modal.hide();
+			if(modName != 'home' && !G.state.get()){
+				Skateboard.core.view('/view/home', {replaceState: true});
+				return false;
+			}
 		},
 		constructContentDom: function(modName, args, opt) {
 			var contentDom = $([
