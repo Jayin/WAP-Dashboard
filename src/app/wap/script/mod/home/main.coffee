@@ -26,7 +26,6 @@ class Mod extends Skateboard.BaseMod
 					document.getElementById('container-website-list')
 				)
 			error:(err)=>
-				console.log(err)
-				alert('error')
+				app.alerts.alert '网络繁忙，请稍后再试'
 
 module.exports = Mod
