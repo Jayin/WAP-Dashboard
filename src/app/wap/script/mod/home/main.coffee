@@ -19,7 +19,6 @@ class Mod extends Skateboard.BaseMod
 		app.ajax.get
 			url: '/api/v1/websites' + '?page=' + page + '&pageSize=' + pageSize;
 			success: (res)=>
-				console.log(res)
 				React.render(
 					React.createElement(WebsiteList, {websites: res}),
 					document.getElementById('container-website-list')
