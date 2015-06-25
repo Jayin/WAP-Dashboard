@@ -13,10 +13,11 @@ module.exports = React.createClass({
     render: function(){
         var createItem = function(item){
             return (
-                <div onClick={this.handleItemClick.bind(this, item)} className="btn-tst">
+                <div onClick={this.handleItemClick.bind(this, item)} className="item" data-data-appkey={item.app_key}>
+                    <div className="time">{item.create_time}</div>
                     <a href={item.domain} target="_blank">{item.domain}</a>
-                    <div>{item.app_key}</div>
-                    <div>{item.create_time}</div>
+                    <div className="appkey">App Key: {item.app_key}</div>
+
                 </div>
             )
 
