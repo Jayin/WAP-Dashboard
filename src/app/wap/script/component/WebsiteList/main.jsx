@@ -7,7 +7,8 @@ module.exports = React.createClass({
 			websites: this.props.websites || []
 		}
 	},
-    handleItemClick: function(data){
+    handleItemClick: function(data, evt){
+        evt.preventDefault();
         G.state.set({website: data});
         Skateboard.core.view('/view/information');
     },
