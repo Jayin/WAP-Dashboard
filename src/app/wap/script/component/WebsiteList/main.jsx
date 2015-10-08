@@ -1,5 +1,6 @@
 var React = require('react');
 var Skateboard = require('skateboard')
+var style = require('./main.scss')
 
 module.exports = React.createClass({
     getInitialState: function(){
@@ -29,8 +30,11 @@ module.exports = React.createClass({
         };
 
         return(
-            <div className="conponent-WebsiteList">
-                {this.props.websites.map(createItem.bind(this))}
+            <div>
+                <style type="text/css" dangerouslySetInnerHTML={{__html: style.render()}}></style>
+                <div className="conponent-WebsiteList">
+                    {this.props.websites.map(createItem.bind(this))}
+                </div>
             </div>
         );
     }

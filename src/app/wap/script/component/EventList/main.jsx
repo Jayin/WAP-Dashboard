@@ -1,4 +1,5 @@
 var React = require('react');
+var style = require('./main.scss');
 
 module.exports = React.createClass({
     getInitialState: function(){
@@ -29,8 +30,11 @@ module.exports = React.createClass({
         };
 
         return(
-            <div className="conponent-EventList">
-                {this.props.events.map(createItem.bind(this))}
+            <div>
+                <style type="text/css" dangerouslySetInnerHTML={{__html: style.render()}}></style>
+                <div className="conponent-EventList">
+                    {this.props.events.map(createItem.bind(this))}
+                </div>
             </div>
         );
     }
