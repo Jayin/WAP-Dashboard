@@ -3,8 +3,8 @@
 
 	"domain": "document.domain",
 	"origin": "location.protocol + '//' + location.host",
-	"cgiOrigin2": "location.protocol + '//' + location.host",
-	"cgiOrigin": "'http://localhost:3000'",
+	"cgiOrigin": "location.protocol + '//' + location.host",
+	"cgiOrigin2": "'http://localhost:3000'",
 	"cdnOrigin": "location.protocol + '//' + location.host",
 
 	"pageAside": "3",
