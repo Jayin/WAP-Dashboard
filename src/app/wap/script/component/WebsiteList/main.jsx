@@ -2,7 +2,7 @@ var React = require('react');
 var Skateboard = require('skateboard')
 var style = require('./main.scss')
 
-module.exports = React.createClass({
+var WebsiteList = React.createClass({
     getInitialState: function(){
 		return {
 			websites: this.props.websites || []
@@ -39,3 +39,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = WebsiteList;

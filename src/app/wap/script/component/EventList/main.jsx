@@ -1,7 +1,7 @@
 var React = require('react');
 var style = require('./main.scss');
 
-module.exports = React.createClass({
+var EventList = React.createClass({
     getInitialState: function(){
 		return {
 			events: this.props.events || []
@@ -39,3 +39,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = EventList;
