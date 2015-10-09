@@ -5,7 +5,10 @@ $width: 650px;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100%;
-    #container-event-list {
+    overflow: scroll;
+
+    #container-event-list,
+    #container-PVTable{
         width: $width;
         margin: 0 auto;
     }

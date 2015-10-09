@@ -3,6 +3,7 @@ Skateboard = require 'skateboard'
 $ = require 'jquery'
 React = require 'react'
 EventList = require '../../component/EventList/main'
+PVTable = require '../../component/PVTable/main'
 
 class Mod extends Skateboard.BaseMod
 	cachable: true
@@ -17,7 +18,9 @@ class Mod extends Skateboard.BaseMod
 	pageSelector: null
 
 	_afterFadeIn: =>
+		@loadPVTable()
 		@loadEvents(1)
+
 
 
 	render: =>
@@ -38,11 +41,11 @@ class Mod extends Skateboard.BaseMod
 
 
 	loadEvents: (page=1, pageSize=10)=>
-		@website = G.state.get('website')
+		website = G.state.get('website')
 
 		@pageSelector.text(page)
 		app.ajax.get
-			url: '/api/v1/website/{website_id}/events?page={page}&pageSize={pageSize}'.replace('{website_id}', @website._id).replace('{page}', page).replace('{pageSize}', pageSize)
+			url: "/api/v1/website/#{website._id}/events?page=#{page}&pageSize=#{pageSize}"
 			success: (res)=>
 				React.render(
 					React.createElement(EventList, {events: res}),
@@ -50,5 +53,13 @@ class Mod extends Skateboard.BaseMod
 				)
 			error:(err)=>
 				app.alerts.alert '网络繁忙，请稍后再试'
+
+
+	loadPVTable: ->
+		website = G.state.get('website')
+		React.render(
+			React.createElement(PVTable, {website_id: website._id}),
+			document.getElementById('container-PVTable')
+		)
 
 module.exports = Mod
