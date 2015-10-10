@@ -4,6 +4,7 @@ $ = require 'jquery'
 React = require 'react'
 EventList = require '../../component/EventList/main'
 PVTable = require '../../component/PVTable/main'
+UVTable = require '../../component/UVTable/main'
 
 class Mod extends Skateboard.BaseMod
 	cachable: true
@@ -19,15 +20,14 @@ class Mod extends Skateboard.BaseMod
 
 	_afterFadeIn: =>
 		@loadPVTable()
+		@loadUVTable()
 		@loadEvents(1)
 
 
 
 	render: =>
 		super
-
 		@pageSelector = $('#information-page-index')
-		@loadEvents(1)
 
 	prePage: =>
 		page = parseInt(@pageSelector.text())
@@ -60,6 +60,13 @@ class Mod extends Skateboard.BaseMod
 		React.render(
 			React.createElement(PVTable, {website_id: website._id}),
 			document.getElementById('container-PVTable')
+		)
+
+	loadUVTable: ->
+		website = G.state.get('website')
+		React.render(
+			React.createElement(UVTable, {website_id: website._id}),
+			document.getElementById('container-UVTable')
 		)
 
 module.exports = Mod
