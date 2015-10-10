@@ -7,7 +7,7 @@ npm install
 bower install
 make prototype
 cd dist/prototype
-python -m SimpleHTTPServer
+make serve
 ```
 
 
