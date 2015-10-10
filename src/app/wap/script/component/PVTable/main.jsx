@@ -33,7 +33,9 @@ var PVTable = React.createClass({
         })
     },
     componentDidMount: function() {
-        this.fetchData(this.state.website_id);
+        if(this.state.website_id){
+            this.fetchData(this.state.website_id);
+        }
     },
     render: function() {
         return (
@@ -54,13 +56,13 @@ var PVTable = React.createClass({
                         <tbody>
                             <tr>
                                 <td className="single line">
-                                    {this.state.data? this.state.data.today:""}
+                                    {this.state.data? this.state.data.today:"无数据"}
                                 </td>
                                 <td className="single line">
-                                    {this.state.data? this.state.data.past7day:""}
+                                    {this.state.data? this.state.data.past7day:"无数据"}
                                 </td>
                                 <td className="single line">
-                                    {this.state.data? this.state.data.past30day:""}
+                                    {this.state.data? this.state.data.past30day:"无数据"}
                                 </td>
                             </tr>
                         </tbody>
