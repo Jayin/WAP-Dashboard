@@ -7,9 +7,7 @@ $width: 650px;
     height: 100%;
     overflow: scroll;
 
-    #container-event-list,
-    #container-PVTable,
-    #container-UVTable{
+    .module{
         width: $width;
         margin: 0 auto;
     }
