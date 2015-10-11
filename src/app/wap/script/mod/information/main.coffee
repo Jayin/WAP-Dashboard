@@ -5,6 +5,7 @@ React = require 'react'
 EventList = require '../../component/EventList/main'
 PVTable = require '../../component/PVTable/main'
 UVTable = require '../../component/UVTable/main'
+LocationTable = require '../../component/LocationTable/main'
 
 class Mod extends Skateboard.BaseMod
 	cachable: true
@@ -21,9 +22,8 @@ class Mod extends Skateboard.BaseMod
 	_afterFadeIn: =>
 		@loadPVTable()
 		@loadUVTable()
+		@loadLocationTable()
 		@loadEvents(1)
-
-
 
 	render: =>
 		super
@@ -37,8 +37,6 @@ class Mod extends Skateboard.BaseMod
 	nextPage: =>
 		page = parseInt(@pageSelector.text())
 		@loadEvents(page + 1)
-
-
 
 	loadEvents: (page=1, pageSize=10)=>
 		website = G.state.get('website')
@@ -67,6 +65,13 @@ class Mod extends Skateboard.BaseMod
 		React.render(
 			React.createElement(UVTable, {website_id: website._id}),
 			document.getElementById('container-UVTable')
+		)
+
+	loadLocationTable: ->
+		website = G.state.get('website')
+		React.render(
+			React.createElement(LocationTable, {website_id: website._id}),
+			document.getElementById('container-LocationTable')
 		)
 
 module.exports = Mod
