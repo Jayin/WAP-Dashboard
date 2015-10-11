@@ -6,6 +6,7 @@ EventList = require '../../component/EventList/main'
 PVTable = require '../../component/PVTable/main'
 UVTable = require '../../component/UVTable/main'
 LocationTable = require '../../component/LocationTable/main'
+SystemTable = require '../../component/SystemTable/main'
 
 class Mod extends Skateboard.BaseMod
 	cachable: true
@@ -23,6 +24,7 @@ class Mod extends Skateboard.BaseMod
 		@loadPVTable()
 		@loadUVTable()
 		@loadLocationTable()
+		@loadSystemTable()
 		@loadEvents(1)
 
 	render: =>
@@ -72,6 +74,13 @@ class Mod extends Skateboard.BaseMod
 		React.render(
 			React.createElement(LocationTable, {website_id: website._id}),
 			document.getElementById('container-LocationTable')
+		)
+
+	loadSystemTable: ->
+		website = G.state.get('website')
+		React.render(
+			React.createElement(SystemTable, {website_id: website._id}),
+			document.getElementById('container-SystemTable')
 		)
 
 module.exports = Mod
